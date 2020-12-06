@@ -23,7 +23,7 @@ export const mockPosts: PostRec[] = [
         modified_at: '2020-12-05T15:29:28.219Z',
         tags: ['feature request'],
         text: `Hey guys. Love what you're doing'.
-            I checked your lib on https://bundlephobia.com and noticed that it comes in at 300kb which is a bit heavy considering that I (and many people) only use as small subset of the functions.
+            I checked your lib on <a href="https://bundlephobia.com">bundlephobia.com/</a> and noticed that it comes in at 300kb which is a bit heavy considering that I (and many people) only use as small subset of the functions.
             Perhaps you can have them exported as individual modules?.
         `,
         title: 'Bundle size reduction'
