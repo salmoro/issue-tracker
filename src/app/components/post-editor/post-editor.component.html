@@ -1,0 +1,71 @@
+<form (submit)="$event.preventDefault()">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar">
+                <mat-icon>person</mat-icon>
+            </div>
+            <mat-form-field class="title">
+                <mat-label>Issue title</mat-label>
+                <input matInput
+                    #title
+                    [value]="(post$ | async)?.title"
+                    (input)="handleTitleChange(title.value)">
+            </mat-form-field>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Issue description</mat-label>
+                <textarea matInput
+                    #comment
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="3"
+                    [value]="(post$ | async)?.text"
+                    placeholder="Describe your issue in detail here..."
+                    (input)="handleTextChange(comment.value)"></textarea>
+            </mat-form-field>
+            <mat-form-field class="tags">
+                <mat-chip-list #chipList aria-label="tag selection">
+                    <mat-chip
+                        *ngFor="let tag of (editablePost$ | async)?.tags"
+                        [selectable]="false"
+                        [removable]="true"
+                        (removed)="handleTagToggle(tag)">
+                        {{tag}}
+                        <mat-icon matChipRemove>
+                            cancel
+                        </mat-icon>
+                    </mat-chip>
+                    <input
+                        #tagsInput
+                        placeholder="Tags"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="newChipsSeparatorKeysCodes"
+                        (matChipInputTokenEnd)="handleTagInput($event.value)">
+                </mat-chip-list>
+                <mat-autocomplete
+                    #auto="matAutocomplete"
+                    (optionSelected)="handleTagInput($event.option.viewValue)">
+                    <mat-option
+                        *ngFor="let tag of (remainingAvailableTags$ | async) || []"
+                        [value]="tag">
+                        {{tag}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-footer class="bottom">
+            <button mat-stroked-button
+                class="cancel"
+                (click)="handleCancelClick()">
+                Cancel
+            </button>        
+            <button mat-stroked-button
+                class="update"
+                [disabled]="!(formIsDirty$ | async)"
+                (click)="handleUpdateCommentClick()">
+                Update comment
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</form>

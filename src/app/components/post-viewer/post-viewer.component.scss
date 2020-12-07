@@ -1,0 +1,62 @@
+:host {
+  display: block;
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    background-color: rgb(233, 233, 233);
+
+    mat-icon {
+      color: white;
+    }
+  }
+
+  mat-card-title {
+    color: rgb(44, 44, 44);
+    font-size: 18px;
+  }
+
+  mat-card-subtitle {
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  .buttons {
+    margin-top: -12px;
+    margin-inline-end: -7px;
+    margin-inline-start: auto;
+    display: flex;
+
+    button {
+      height: 38px;
+      width: 38px;
+
+      &:not(:first-child) {
+        margin-inline-start: 5px;
+      }
+
+      mat-icon {
+        color: rgb(194, 194, 194);
+        font-size: 18px;
+        transition: color .15s ease;
+
+        &:hover {
+            color: gray;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: 10px 10px 5px;
+
+    p {
+        white-space: pre-line;
+    }
+
+    ::ng-deep a {
+        font-weight: 500;
+        color: black;
+    }    
+  }
+}

@@ -1,0 +1,14 @@
+<viv-post-viewer
+    *ngIf="(viewMode$ | async) === 'view'"
+    [post]="post"
+    (clickedEdit)="handleEditClick()"
+    (clickedDelete)="handleDeleteClick()">
+</viv-post-viewer>
+
+<viv-post-editor
+    *ngIf="(viewMode$ | async) === 'edit'"
+    [post]="post"
+    [availableTags]="availableTags"
+    (canceled)="handleCancelEditClick()"
+    (edited)="handleSaveEdit($event)">
+</viv-post-editor>

@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+viv-post-list-item{
+    &:not(:first-child) {
+        margin-top: 30px;
+    }
+
+    &:last-child {
+        // keep drop shadow visible
+        margin-bottom: 2px;
+    }
+}

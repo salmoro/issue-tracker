@@ -40,7 +40,9 @@ export class DataService {
             ...data,
             modifiedAt: new Date(Date.now())
         } as Post;
+
         posts[index] = newVersion;
+
         this.posts$.next(posts);
     }
 

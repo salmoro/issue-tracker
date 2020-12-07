@@ -1,0 +1,66 @@
+:host {
+  display: block;
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    background-color: rgb(233, 233, 233);
+
+    mat-icon {
+      color: white;
+    }
+  }
+
+  mat-card-content {
+    padding: 0 20px;
+
+    ::ng-deep a {
+      font-weight: 500;
+      color: black;
+    }
+
+    textarea {
+      margin-top: 10px;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+
+    &:not(.title) {
+      margin-top: 20px;
+    }
+
+    ::ng-deep.mat-form-field-underline {
+      background-color: rgb(206, 206, 206) !important;
+    }
+  }
+
+  .tags {}
+
+  .bottom {
+    padding: 0 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+        transition: background-color .3s ease-in-out;
+      &.cancel {
+          font-weight: 400;
+          border-color: #ffb7b2;
+          color: #ff7066;
+      }
+
+      &.update:not([disabled]) {
+        color: white;
+        background-color: #00990094;
+      }
+      
+      &:not(:first-child) {
+        margin-inline-start: 15px;
+      }
+    }
+
+  }
+}

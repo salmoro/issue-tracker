@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <mat-form-field>
+        <mat-label>Filter by tags</mat-label>
+        <mat-select multiple
+            (selectionChange)="handleTagFilterChange($event.value)">
+            <mat-option *ngFor="let tag of availableTags$ | async"
+                [value]="tag">
+                {{tag}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <viv-post-list
+        [posts]="(posts$ | async) || []"
+        [editFn]="editPostFn"
+        [deleteFn]="deletePostFn"
+        [availableTags]="(availableTags$ | async) || []">
+    </viv-post-list>
+</div>

@@ -1,0 +1,8 @@
+
+<viv-post-list-item
+    *ngFor="let post of posts; trackBy: trackByFn"
+    [post]="post"
+    [editFn]="editFn"
+    [deleteFn]="deleteFn"
+    [availableTags]="availableTags">
+</viv-post-list-item>
