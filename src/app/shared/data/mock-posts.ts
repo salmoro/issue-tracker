@@ -8,7 +8,7 @@ export const mockPosts: PostRec[] = [
         tags: ['bug'],
         text: `Hi there.
 
-Not certain this is a bug or a feature but your lazy-loaded pages seem to be a bit too lazy 😉.`,
+Not certain whether this is a bug or a feature but your lazy-loaded pages seem to be a bit too lazy 😉.`,
         title: 'Lazy loading not working!'
     },
     {

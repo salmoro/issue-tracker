@@ -7,11 +7,12 @@ import { AddPost, DataService, EditPost } from 'src/app/shared/data/data.service
 import { Post } from 'src/app/shared/data/post';
 import { Tag } from 'src/app/shared/data/post.types';
 import { sleep } from 'src/utils';
+
 @Component({
     selector: 'viv-posts',
     templateUrl: './posts.page.html',
     styleUrls: ['./posts.page.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsPage {
     public selectedTags$ = new BehaviorSubject<Tag[]>([]);

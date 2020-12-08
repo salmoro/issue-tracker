@@ -5,6 +5,16 @@
   padding: 50px;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 .wrapper {
@@ -14,12 +24,26 @@
   flex-direction: column;
   align-items: center;
 
-  mat-form-field {
+  .tag-filters {
     margin-inline-end: auto;
+  }
+
+  .loading-posts {
+    display: grid;
+    height: 100px;
+    width: 100%;
+    place-items: center;
+
+    mat-spinner {
+      ::ng-deep circle {
+        stroke: rgb(37, 37, 37);
+      }
+    }
   }
 
   viv-post-list {
     margin-top: 20px;
+    animation: fade-in .5s ease-out;
   }
 
   .add {

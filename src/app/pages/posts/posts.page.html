@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <mat-form-field>
+    <mat-form-field class="tag-filters">
         <mat-label>Filter by tags</mat-label>
         <mat-select multiple
             (selectionChange)="handleTagFilterChange($event.value)">
@@ -10,6 +10,14 @@
         </mat-select>
     </mat-form-field>
     
+    <div class="loading-posts"
+        *ngIf="(posts$ | async) === null">
+        <mat-spinner
+            [diameter]="25"
+            [strokeWidth]="2">
+        </mat-spinner>
+    </div>
+
     <viv-post-list
         [posts]="(posts$ | async) || []"
         [editFn]="editPostFn"

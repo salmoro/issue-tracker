@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { EditPost } from 'src/app/shared/data/data.service';
 import { Post } from 'src/app/shared/data/post';
-import { animations } from './post-lit-animations';
+import { animations } from './post-list-animations';
 
 export type DeleteFn = (id: string) => Promise<any>;
 export type EditFn = (post: EditPost) => Promise<any>;
