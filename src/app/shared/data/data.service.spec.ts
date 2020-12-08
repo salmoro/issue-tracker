@@ -80,8 +80,8 @@ describe('DataService', () => {
 
     test('should return tags based on those found on existing posts', async () => {
         const expected = mockPosts.map(post => post.tags).flat();
-        const actual = await toPromise(service.getTags());
+        const actual = await toPromise(service.getUsedTags());
 
         expect(actual).toEqual(expected);
-    })
+    });
 });

@@ -24,7 +24,9 @@ export class PostsComponent {
         private data: DataService,
     ) { }
 
-    public availableTags$ = this.data.getTags();
+    public availableTags$ = this.data.getAllTags();
+
+    public usedTags$ = this.data.getUsedTags();
 
     public posts$ = combineLatest([
         this.data.getPosts(),

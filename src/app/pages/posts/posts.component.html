@@ -3,7 +3,7 @@
         <mat-label>Filter by tags</mat-label>
         <mat-select multiple
             (selectionChange)="handleTagFilterChange($event.value)">
-            <mat-option *ngFor="let tag of availableTags$ | async"
+            <mat-option *ngFor="let tag of usedTags$ | async"
                 [value]="tag">
                 {{tag}}
             </mat-option>

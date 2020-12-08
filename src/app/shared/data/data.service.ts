@@ -21,14 +21,28 @@ export class DataService {
         this.loadMockData();
     }
 
-    public getTags() {
+    public getPosts() {
+        return this.posts$.asObservable();
+    }
+
+    public getUsedTags() {
         return this.posts$.pipe(
             map(posts => posts.map(p => p.tags).flat())
         );
     }
 
-    public getPosts() {
-        return this.posts$.asObservable();
+    public getAllTags() {
+        const tags = [
+            'bug',
+            'question',
+            'documentation',
+            'enhancement',
+            'good for first issue',
+            'help wanted',
+        ];
+
+        return this.getUsedTags()
+            .pipe(map(used => [...used, ...tags]));
     }
 
     public async editPost(data: EditPost) {
