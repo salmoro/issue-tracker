@@ -1,14 +1,16 @@
 {
-  "name": "viventium-task-tracker",
-  "version": "0.0.0",
+  "name": "viventium-issue-tracker",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "create-mock-data": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} ./scripts/create-mock-posts",
-    "build": "ng build",
-    "test": "jest --watch",
+    "build": "ng build --prod",
+    "test": "jest --no-cache",
+    "test:dev": "jest --watch",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ci": "npm run lint && npm test && npm run build"
   },
   "private": true,
   "dependencies": {
