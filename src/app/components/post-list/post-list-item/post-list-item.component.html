@@ -12,3 +12,7 @@
     (canceled)="handleCancelEditClick()"
     (edited)="handleSaveEdit($event)">
 </viv-post-editor>
+
+<viv-spinner-overlay
+    *ngIf="showSpinner$ | async">
+</viv-spinner-overlay>

@@ -9,11 +9,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { PostViewerComponent } from './post-viewer/post-viewer.component';
 import { PostEditorComponent } from './post-editor/post-editor.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +23,7 @@ import { PipesModule } from '../pipes/pipes.module';
         PostListItemComponent,
         PostViewerComponent,
         PostEditorComponent,
+        SpinnerOverlayComponent,
     ],
     imports: [
         CommonModule,
@@ -31,6 +34,7 @@ import { PipesModule } from '../pipes/pipes.module';
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
+        MatProgressSpinnerModule,
         MatTooltipModule,
         PipesModule,
         TextFieldModule,
@@ -38,6 +42,7 @@ import { PipesModule } from '../pipes/pipes.module';
     exports: [
         PostListComponent,
         PostEditorComponent,
+        SpinnerOverlayComponent,
     ]
 })
 export class ComponentsModule { }

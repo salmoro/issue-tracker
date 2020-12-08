@@ -22,8 +22,13 @@
     margin-top: 20px;
   }
 
-  viv-post-editor {
+  .add {
     margin: 40px 0;
-    box-shadow: 0px 3px 11px #bcb8b8;
+    position: relative;
+
+    viv-post-editor {
+      box-shadow: 0px 3px 11px #bcb8b8;
+    }
   }
+
 }

@@ -7,7 +7,6 @@ import { AddPost, DataService, EditPost } from 'src/app/shared/data/data.service
 import { Post } from 'src/app/shared/data/post';
 import { Tag } from 'src/app/shared/data/post.types';
 import { sleep } from 'src/utils';
-
 @Component({
     selector: 'viv-posts',
     templateUrl: './posts.component.html',
@@ -16,12 +15,13 @@ import { sleep } from 'src/utils';
 })
 export class PostsComponent {
     public selectedTags$ = new BehaviorSubject<Tag[]>([]);
+    public addingNewIssueInProg$ = new BehaviorSubject(false);
 
-    @ViewChild(PostEditorComponent) private postEditor!: PostEditorComponent;
+    @ViewChild(PostEditorComponent) private newPostEditor!: PostEditorComponent;
+    @ViewChild(PostEditorComponent, { read: ElementRef }) private newPostEditorRef!: ElementRef<HTMLElement>;
 
     constructor(
         private data: DataService,
-        private elementRef: ElementRef,
     ) { }
 
     public availableTags$ = this.data.getTags();
@@ -46,15 +46,33 @@ export class PostsComponent {
     }
 
     public async handleAddPost(post: AddPost) {
+        this.addingNewIssueInProg$.next(true);
+
+        await this.simulateProcessingDelay();
         await this.data.addPost(post);
 
-        this.postEditor.clear();
+        this.newPostEditor.clear();
+        this.addingNewIssueInProg$.next(false);
 
         await sleep(0);
-        (this.elementRef.nativeElement as HTMLElement).scrollTop = 1_000_000;
+        this.scrollNewPostEditorIntoView();
     }
 
-    public editPostFn: EditFn = (post: EditPost) => this.data.editPost(post);
+    public scrollNewPostEditorIntoView() {
+        this.newPostEditorRef.nativeElement?.scrollIntoView();
+    }
 
-    public deletePostFn: DeleteFn = (id: string) => this.data.deletePost(id);
+    public editPostFn: EditFn = async (post: EditPost) => {
+        await this.simulateProcessingDelay();
+        await this.data.editPost(post);
+    }
+
+    public deletePostFn: DeleteFn = async (id: string) => {
+        await this.simulateProcessingDelay();
+        await this.data.deletePost(id);
+    }
+
+    private simulateProcessingDelay() {
+        return sleep(300);
+    }
 }

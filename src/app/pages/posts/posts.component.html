@@ -17,10 +17,15 @@
         [availableTags]="(availableTags$ | async) || []">
     </viv-post-list>
 
-    <viv-post-editor
-        type="create"
-        [formTitle]="'Report an issue'"
-        [availableTags]="(availableTags$ | async) || []"
-        (created)="handleAddPost($event)">
-    </viv-post-editor>
+    <div class="add">
+        <viv-post-editor
+            type="create"
+            [formTitle]="'Report an issue'"
+            [availableTags]="(availableTags$ | async) || []"
+            (created)="handleAddPost($event)">
+        </viv-post-editor>
+        <viv-spinner-overlay
+            *ngIf="addingNewIssueInProg$ | async">
+        </viv-spinner-overlay>
+    </div>
 </div>

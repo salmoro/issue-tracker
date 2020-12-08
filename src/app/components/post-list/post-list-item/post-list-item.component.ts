@@ -13,6 +13,8 @@ import { DeleteFn, EditFn } from '../post-list.component';
 export class PostListItemComponent {
     public viewMode$ = new BehaviorSubject<'edit' | 'view'>('view');
 
+    public showSpinner$ = new BehaviorSubject(false);
+
     @Input() public post!: Post;
 
     @Input() availableTags: string[] = [];
@@ -30,11 +32,23 @@ export class PostListItemComponent {
     }
 
     public async handleSaveEdit(post: EditPost) {
+        this.showSpinner();
+
         await this.editFn(post);
+
         this.viewMode$.next('view');
+        this.showSpinner(false);
     }
 
     public async handleDeleteClick() {
+        this.showSpinner();
+
         await this.deleteFn(this.post.id);
+
+        this.showSpinner(false);
+    }
+
+    private showSpinner(show = true) {
+        this.showSpinner$.next(show);
     }
 }
