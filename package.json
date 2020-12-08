@@ -11,7 +11,7 @@
     "test:dev": "jest --watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci": "npm run lint && npm test && npm run build",
+    "ci": "npm run lint && npm test && npm run build && npm run create-mock-data",
     "cd": "npm run ci && npm run deploy"
   },
   "private": true,

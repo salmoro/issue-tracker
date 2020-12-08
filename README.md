@@ -18,5 +18,9 @@ Run `npm test` to execute the unit tests via [jest](https://jestjs.io/).
 ## Lint
 Run `npm lint` to lint the code via [TSLint](https://palantir.github.io/tslint/).
 
+## Generate mock data JSON
+1. Edit contents in `./src/app/shared/data/mock-posts.ts`
+2. Run `npm run create-mock-data` to generate a new JSON file at `./src/assets/posts.json`.
+
 ## Developers
 - Shlomo Morosow <smorosow.dev@gmail.com>
