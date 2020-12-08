@@ -2,17 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataService } from 'src/app/shared/data/data.service';
 import { MockDataService } from 'src/app/shared/data/mock.data.service';
 
-import { PostsComponent } from './posts.component';
+import { PostsPage } from './posts.page';
 import { PostsModule } from './posts.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PostsComponent', () => {
-  let component: PostsComponent;
-  let fixture: ComponentFixture<PostsComponent>;
+describe('PostsPage', () => {
+  let component: PostsPage;
+  let fixture: ComponentFixture<PostsPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [  ],
-      imports: [PostsModule],
+      imports: [PostsModule, NoopAnimationsModule],
       providers: [
           {
               provide: DataService,
@@ -24,7 +25,7 @@ describe('PostsComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostsComponent);
+    fixture = TestBed.createComponent(PostsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostsComponent } from './posts.component';
+import { PostsPage } from './posts.page';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-      PostsComponent
+      PostsPage
   ],
   imports: [
     CommonModule,
@@ -17,11 +17,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     RouterModule.forChild([{
         path: '',
-        component: PostsComponent
+        component: PostsPage
     }]),
   ],
   exports: [
-      PostsComponent
+      PostsPage
   ]
 })
 export class PostsModule { }

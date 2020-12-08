@@ -9,11 +9,11 @@ import { Tag } from 'src/app/shared/data/post.types';
 import { sleep } from 'src/utils';
 @Component({
     selector: 'viv-posts',
-    templateUrl: './posts.component.html',
-    styleUrls: ['./posts.component.scss'],
+    templateUrl: './posts.page.html',
+    styleUrls: ['./posts.page.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostsComponent {
+export class PostsPage {
     public selectedTags$ = new BehaviorSubject<Tag[]>([]);
     public addingNewIssueInProg$ = new BehaviorSubject(false);
 

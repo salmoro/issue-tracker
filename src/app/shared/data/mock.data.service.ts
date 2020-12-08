@@ -6,4 +6,12 @@ export class MockDataService implements Partial<DataService> {
     public getPosts() {
         return of() as Observable<Post[]>;
     }
+
+    public getAllTags() {
+        return of([]);
+    }
+
+    public getUsedTags() {
+        return of([]);
+    }
 }
