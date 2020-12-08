@@ -30,7 +30,7 @@ describe('DataService', () => {
             title: 'A new post',
             text: `If you're reading this, you must be bored...`,
             tags: ['needs triage'],
-        }
+        };
 
         await service.addPost(newPost);
 

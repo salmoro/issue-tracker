@@ -64,7 +64,7 @@
             </button>        
             <button mat-stroked-button
                 class="submit"
-                [disabled]="!(formIsDirty$ | async)"
+                [disabled]="(formIsDirty$ | async) === false"
                 (click)="handleSubmitClick()">
                 {{ type === 'edit' ? 'Update comment' : 'Comment' }}
             </button>

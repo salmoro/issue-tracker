@@ -14,5 +14,5 @@ describe('SumPipe', () => {
         const actual = (new SumPipe()).transform(text);
 
         expect(actual).toBe(expected);
-    })
+    });
 });
