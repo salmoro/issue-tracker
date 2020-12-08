@@ -12,6 +12,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { PostViewerComponent } from './post-viewer/post-viewer.component';
 import { PostEditorComponent } from './post-editor/post-editor.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { PostEditorComponent } from './post-editor/post-editor.component';
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
+        PipesModule,
         TextFieldModule,
     ],
     exports: [
