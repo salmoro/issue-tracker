@@ -1,8 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { timer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { isAfter, subHours, format, isToday, subMinutes } from 'date-fns';
-import { formatDistanceToNow } from 'date-fns/esm';
+import { isAfter, subHours, format, isToday, formatDistanceToNow } from 'date-fns';
 
 @Pipe({
     name: 'appDate'
