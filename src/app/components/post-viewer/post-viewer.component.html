@@ -7,7 +7,7 @@
             {{post.title}}
         </mat-card-title>
         <mat-card-subtitle>
-            Last edited: {{post.modifiedAt | date}}
+            Last edited: {{post.modifiedAt | appDate | async}}
         </mat-card-subtitle>
         <div class="buttons">
             <button mat-icon-button
