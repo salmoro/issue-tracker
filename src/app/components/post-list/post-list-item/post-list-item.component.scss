@@ -1,3 +1,16 @@
 :host {
   display: block;
+
+  @keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  viv-post-editor {
+     animation: fade-in .2s ease-in-out; 
+    }
+    
+    viv-post-viewer {
+        animation: fade-in .2s ease-in-out;
+  }
 }

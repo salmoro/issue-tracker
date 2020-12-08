@@ -33,6 +33,7 @@ import { PostEditorComponent } from './post-editor/post-editor.component';
     ],
     exports: [
         PostListComponent,
+        PostEditorComponent,
     ]
 })
 export class ComponentsModule { }

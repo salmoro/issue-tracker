@@ -1,5 +1,5 @@
-
 <viv-post-list-item
+    @contract
     *ngFor="let post of posts; trackBy: trackByFn"
     [post]="post"
     [editFn]="editFn"

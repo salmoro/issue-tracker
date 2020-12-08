@@ -82,7 +82,7 @@ export class DataService {
         const posts = await toPromise(this.posts$);
 
         return Math.max(
-            ...posts.map(p => Number(p.id))
+            ...posts.map(p => Number(p.id)), 0
         ) + 1;
     }
 }

@@ -1,10 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { PostEditorComponent } from 'src/app/components/post-editor/post-editor.component';
 import { DeleteFn, EditFn } from 'src/app/components/post-list/post-list.component';
-import { DataService, EditPost } from 'src/app/shared/data/data.service';
+import { AddPost, DataService, EditPost } from 'src/app/shared/data/data.service';
 import { Post } from 'src/app/shared/data/post';
 import { Tag } from 'src/app/shared/data/post.types';
+import { sleep } from 'src/utils';
 
 @Component({
     selector: 'viv-posts',
@@ -15,8 +17,11 @@ import { Tag } from 'src/app/shared/data/post.types';
 export class PostsComponent {
     public selectedTags$ = new BehaviorSubject<Tag[]>([]);
 
+    @ViewChild(PostEditorComponent) private postEditor!: PostEditorComponent;
+
     constructor(
         private data: DataService,
+        private elementRef: ElementRef,
     ) { }
 
     public availableTags$ = this.data.getTags();
@@ -38,6 +43,15 @@ export class PostsComponent {
 
     public handleTagFilterChange(tags: Tag[]) {
         this.selectedTags$.next(tags);
+    }
+
+    public async handleAddPost(post: AddPost) {
+        await this.data.addPost(post);
+
+        this.postEditor.clear();
+
+        await sleep(0);
+        (this.elementRef.nativeElement as HTMLElement).scrollTop = 1_000_000;
     }
 
     public editPostFn: EditFn = (post: EditPost) => this.data.editPost(post);

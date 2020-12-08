@@ -1,11 +1,17 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EditPost } from 'src/app/shared/data/data.service';
+import { AddPost, EditPost } from 'src/app/shared/data/data.service';
 import { Post } from 'src/app/shared/data/post';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { xor, difference } from 'lodash';
 import { Tag } from 'src/app/shared/data/post.types';
+
+const emptyPost: AddPost = {
+    title: '',
+    text: '',
+    tags: [],
+};
 
 @Component({
     selector: 'viv-post-editor',
@@ -16,13 +22,17 @@ import { Tag } from 'src/app/shared/data/post.types';
 export class PostEditorComponent {
     public newChipsSeparatorKeysCodes: number[] = [ENTER, COMMA];
 
-    public post$ = new BehaviorSubject<Post | null>(null);
+    public post$ = new BehaviorSubject<Post | AddPost>(emptyPost);
 
-    public editablePost$ = new BehaviorSubject<Post | null>(null);
+    public editablePost$ = new BehaviorSubject<Post | AddPost>(emptyPost);
 
     public availableTags$ = new BehaviorSubject<Tag[]>([]);
 
+    @ViewChild('title') public titleInput!: ElementRef;
+    @ViewChild('text') public textInput!: ElementRef;
     @ViewChild('tagsInput') public tagsInput!: ElementRef;
+
+    @Input() public formTitle = '';
 
     @Input() set post(post: Post) {
         this.post$.next(post);
@@ -33,7 +43,11 @@ export class PostEditorComponent {
         this.availableTags$.next(tags);
     }
 
+    @Input() public type: 'create' | 'edit' = 'edit';
+
     @Output() edited = new EventEmitter<EditPost>();
+
+    @Output() created = new EventEmitter<AddPost>();
 
     @Output() canceled = new EventEmitter();
 
@@ -47,7 +61,15 @@ export class PostEditorComponent {
     public remainingAvailableTags$ = combineLatest([
         this.availableTags$,
         this.editablePost$,
-    ]).pipe(map(([tags, post]) => difference(tags, post?.tags || [])));
+    ]).pipe(map(([tags, post]) => difference(tags, post.tags)));
+
+    public clear() {
+        this.post$.next(emptyPost);
+        this.editablePost$.next(emptyPost);
+        this.titleInput.nativeElement.value = '';
+        this.textInput.nativeElement.value = '';
+        this.tagsInput.nativeElement.value = '';
+    }
 
     public handleTitleChange(title: string) {
         this.editPost({ title });
@@ -58,7 +80,7 @@ export class PostEditorComponent {
     }
 
     public handleTagToggle(tag: Tag) {
-        const tags = xor(this.editablePost$.value!.tags, [tag]);
+        const tags = xor(this.editablePost$.value.tags, [tag]);
         this.editPost({ tags });
     }
 
@@ -76,7 +98,7 @@ export class PostEditorComponent {
 
     private editPost(post: Omit<EditPost, 'id'>) {
         this.editablePost$.next({
-            ...this.editablePost$.value!,
+            ...this.editablePost$.value,
             ...post
         } as Post);
     }
@@ -85,13 +107,20 @@ export class PostEditorComponent {
         this.canceled.emit();
     }
 
-    public handleUpdateCommentClick() {
+    public handleSubmitClick() {
         const {
-            id, tags, text, title,
-        } = this.editablePost$.value!;
+            id = '', tags, text, title,
+        } = this.editablePost$.value as Post;
 
-        this.edited.emit({
-            id, tags, text, title,
-        });
+        if (this.type === 'edit') {
+            this.edited.emit({
+                id, tags, text, title,
+            });
+        } else {
+            this.created.emit({
+                tags, text, title,
+            });
+        }
+
     }
 }
