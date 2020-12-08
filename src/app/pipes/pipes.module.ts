@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SumPipe } from './sum.pipe';
+import { LinksPipe } from './links.pipe';
 
 
 @NgModule({
   declarations: [
-      SumPipe
+      SumPipe,
+      LinksPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-      SumPipe
+      SumPipe,
+      LinksPipe
   ]
 })
 export class PipesModule { }

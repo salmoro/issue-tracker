@@ -21,7 +21,7 @@
         </div>
     </mat-card-header>
     <mat-card-content>
-        <p [innerHTML]="post.text | sum"></p>
+        <p [innerHTML]="post.text | sum | links"></p>
 
         <mat-chip-list aria-label="tags">
             <mat-chip *ngFor="let tag of post.tags"

@@ -55,8 +55,12 @@
     }
 
     ::ng-deep a {
-        font-weight: 500;
-        color: black;
+        text-decoration: none;
+        color: rgb(19, 108, 175);
+
+        &:hover {
+            text-decoration: underline;
+        }
     }    
   }
 }
