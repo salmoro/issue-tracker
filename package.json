@@ -7,10 +7,12 @@
     "create-mock-data": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} ./scripts/create-mock-posts",
     "build": "ng build --prod",
     "test": "jest --no-cache",
+    "deploy": "firebase deploy --only hosting",
     "test:dev": "jest --watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci": "npm run lint && npm test && npm run build"
+    "ci": "npm run lint && npm test && npm run build",
+    "cd": "npm run ci && npm run deploy"
   },
   "private": true,
   "dependencies": {
